@@ -29,7 +29,7 @@
                         <p>
                             <?php echo $account->getError(Constants::$loginFailed); ?>
                             <label for="loginUsername">Username</label>
-                            <input type="text" id="loginUsername" name="loginUsername" placeholder="e.g., bartSimpson" required />
+                            <input type="text" id="loginUsername" name="loginUsername" placeholder="e.g., bartSimpson" value="<?php getInputValue('loginUsername'); ?>" required />
                         </p>
                         <p>
                             <label for="loginPassword">Password</label>
@@ -37,7 +37,7 @@
                         </p>
                         <button type="submit" name="loginButton">LOG IN</button>
                         <div class="hasAccountText">
-                            <span id="hideLogin">Don't have an account yet? Signup here.</span>
+                            <span id="hideLogin">Don't have an account yet? Sign up here.</span>
                         </div>
                     </form>
                     <form action="register.php" id="registerForm" method="POST">
@@ -86,9 +86,25 @@
                         </div>
                     </form>
                 </div>
+                <div id="loginText">
+                    <h1>Get great music, right now</h1>
+                    <h2>Listen to loads of songs for free.</h2>
+                    <ul>
+                        <li>Discover music you'll fall in love with</li>
+                        <li>Create your own playlists</li>
+                        <li>Follow artists to keep up to date</li>
+                    </ul>
+                </div>
             </div>
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="assets/js/register.js"></script>
+        <?php
+            if (isset($_POST['registerButton'])) {
+                echo "<script>showRegisterForm();</script>";
+            } else {
+                echo "<script>showLoginForm();</script>";
+            }
+        ?>
     </body>
 </html>

@@ -1,14 +1,19 @@
 $(document).ready(function() {
-	$('#loginForm').show();
-	$('#registerForm').hide();
-
 	$('#hideLogin').click(function() {
-		$('#loginForm').hide();
-		$('#registerForm').show();
+		showRegisterForm();
 	});
 
 	$('#hideRegister').click(function() {
-		$('#loginForm').show();
-		$('#registerForm').hide();
+		showLoginForm();
 	});
 });
+
+function showRegisterForm() {
+	$('#loginForm').hide();
+	$('#registerForm').show();
+}
+
+function showLoginForm() {
+	$('#loginForm').show();
+	$('#registerForm').hide();
+}
