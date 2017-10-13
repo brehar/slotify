@@ -1,11 +1,15 @@
 <?php
-include("config.php");
+    include("config.php");
+    include("classes/Artist.php");
+    include("classes/Genre.php");
+    include("classes/Album.php");
 
-if (isset($_SESSION['userLoggedIn'])) {
-    $userLoggedIn = $_SESSION['userLoggedIn'];
-} else {
-    header("Location: register.php");
-}
+    if (isset($_SESSION['userLoggedIn'])) {
+        $userLoggedIn = $_SESSION['userLoggedIn'];
+    } else {
+        header("Location: register.php");
+        exit;
+    }
 ?>
 
 <html>

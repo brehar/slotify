@@ -1,6 +1,7 @@
 * {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     color: #FFFFFF;
+    letter-spacing: 1px;
 }
 
 html, body {
@@ -218,4 +219,72 @@ body {
 
 #mainContent {
     padding: 0 20px;
+}
+
+.pageHeadingBig {
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+}
+
+.gridViewItem {
+    display: inline-block;
+    margin-right: 20px;
+    width: 29%;
+    max-width: 200px;
+    min-width: 150px;
+    margin-bottom: 20px;
+}
+
+.gridViewItem img {
+    width: 100%;
+}
+
+.gridViewItem a {
+    text-decoration: none;
+}
+
+.gridViewInfo {
+    font-weight: 300;
+    text-align: center;
+    padding: 5px 0;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.entityInfo {
+    padding: 40px 0 10px 0;
+    display: inline-block;
+    width: 100%;
+}
+
+.entityInfo .leftSection {
+    width: 30%;
+    float: left;
+    max-width: 250px;
+}
+
+.entityInfo .leftSection img {
+    width: 100%;
+}
+
+.entityInfo .rightSection {
+    width: 70%;
+    float: left;
+    padding: 5px 10px 5px 40px;
+    box-sizing: border-box;
+}
+
+.entityInfo .rightSection h2 {
+    margin-top: 0;
+}
+
+.entityInfo .rightSection p {
+    color: #939393;
+    font-weight: 200;
+}
+
+.italics {
+    font-style: italic;
 }

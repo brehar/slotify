@@ -8,6 +8,7 @@
         if ($result) {
             $_SESSION['userLoggedIn'] = $username;
             header("Location: index.php");
+            exit;
         }
     }
 ?>
