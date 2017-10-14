@@ -3,6 +3,7 @@
     include("classes/Artist.php");
     include("classes/Genre.php");
     include("classes/Album.php");
+    include("classes/Song.php");
 
     if (isset($_SESSION['userLoggedIn'])) {
         $userLoggedIn = $_SESSION['userLoggedIn'];
