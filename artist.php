@@ -65,7 +65,7 @@
     </ul>
 </div>
 <script>
-    let tempSongIds = '<?php echo json_encode($songIdArray); ?>';
+    tempSongIds = '<?php echo json_encode($songIdArray); ?>';
     tempPlaylist = JSON.parse(tempSongIds);
 </script>
 <div class="gridViewContainer">

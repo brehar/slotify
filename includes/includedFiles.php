@@ -11,5 +11,7 @@
 
 		$url = $_SERVER['REQUEST_URI'];
 		echo "<script>openPage('$url')</script>";
+
+		exit();
 	}
 ?>

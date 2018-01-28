@@ -1,4 +1,5 @@
 let currentPlaylist;
+let tempSongIds;
 let tempPlaylist = [];
 let audioElement;
 let mouseDown = false;
@@ -7,8 +8,13 @@ let repeat = false;
 let shuffle = false;
 let shufflePlaylist = [];
 let userLoggedIn;
+let timer;
 
 function openPage(url) {
+	if (timer !== null) {
+		clearTimeout(timer);
+	}
+
 	if (url.indexOf('?') === -1) {
 		url = url + '?';
 	}
@@ -138,13 +144,13 @@ function setTrack(trackId, newPlaylist, play) {
 
 	$.post('includes/handlers/ajax/getSongJson.php', { trackId }, data => {
 		let track = JSON.parse(data);
-		let $trackSpan = $('.trackName span');
+		let $trackSpan = $('.trackInfo .trackName span');
 
 		$trackSpan.text(track.title);
 
 		$.post('includes/handlers/ajax/getArtistJson.php', { artistId: track.artist }, data => {
 			let artist = JSON.parse(data);
-			let $artistSpan = $('.artistName span');
+			let $artistSpan = $('.trackInfo .artistName span');
 
 			$artistSpan.text(artist.name);
 			$artistSpan.attr('onclick', `openPage("artist.php?id=${artist.id}")`);
@@ -152,7 +158,7 @@ function setTrack(trackId, newPlaylist, play) {
 
 		$.post('includes/handlers/ajax/getAlbumJson.php', { albumId: track.album }, data => {
 			let album = JSON.parse(data);
-			let $img = $('.albumLink img');
+			let $img = $('.content .albumLink img');
 
 			$img.attr('src', album.artworkPath);
 			$img.attr('alt', album.title);
