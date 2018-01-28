@@ -19,11 +19,15 @@
         <div id="nowPlayingLeft">
             <div class="content">
                             <span class="albumLink">
-                                <img src="" alt="" class="albumArtwork" />
+                                <img role="link" tabindex="0" src="" alt="" class="albumArtwork" />
                             </span>
                 <div class="trackInfo">
-                    <span class="trackName"><span></span></span>
-                    <span class="artistName"><span></span></span>
+                    <span class="trackName">
+                        <span role="link" tabindex="0"></span>
+                    </span>
+                    <span class="artistName">
+                        <span role="link" tabindex="0"></span>
+                    </span>
                 </div>
             </div>
         </div>

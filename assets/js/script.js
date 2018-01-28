@@ -117,6 +117,10 @@ class Audio {
 	}
 }
 
+function playFirstSong() {
+	setTrack(tempPlaylist[0], tempPlaylist, true);
+}
+
 function setTrack(trackId, newPlaylist, play) {
 	if (newPlaylist !== currentPlaylist) {
 		currentPlaylist = newPlaylist;
@@ -134,13 +138,16 @@ function setTrack(trackId, newPlaylist, play) {
 
 	$.post('includes/handlers/ajax/getSongJson.php', { trackId }, data => {
 		let track = JSON.parse(data);
+		let $trackSpan = $('.trackName span');
 
-		$('.trackName span').text(track.title);
+		$trackSpan.text(track.title);
 
 		$.post('includes/handlers/ajax/getArtistJson.php', { artistId: track.artist }, data => {
 			let artist = JSON.parse(data);
+			let $artistSpan = $('.artistName span');
 
-			$('.artistName span').text(artist.name);
+			$artistSpan.text(artist.name);
+			$artistSpan.attr('onclick', `openPage("artist.php?id=${artist.id}")`);
 		});
 
 		$.post('includes/handlers/ajax/getAlbumJson.php', { albumId: track.album }, data => {
@@ -149,6 +156,8 @@ function setTrack(trackId, newPlaylist, play) {
 
 			$img.attr('src', album.artworkPath);
 			$img.attr('alt', album.title);
+			$img.attr('onclick', `openPage("album.php?id=${album.id}")`);
+			$trackSpan.attr('onclick', `openPage("album.php?id=${album.id}")`);
 		});
 
 		audioElement.setTrack(track);
