@@ -7,7 +7,6 @@ let currentIndex = 0;
 let repeat = false;
 let shuffle = false;
 let shufflePlaylist = [];
-let userLoggedIn;
 let timer;
 
 function openPage(url) {
@@ -23,6 +22,23 @@ function openPage(url) {
 	$('#mainContent').load(encodedUrl);
 	$('body').scrollTop(0);
 	history.pushState(null, null, url);
+}
+
+function createPlaylist() {
+	let popup = prompt('Please enter the name of your playlist:');
+
+	if (popup) {
+		$.post('includes/handlers/ajax/createPlaylist.php', { name: popup, username: userLoggedIn }).done(function(
+			error
+		) {
+			if (error) {
+				alert(error);
+				return;
+			}
+
+			openPage('yourMusic.php');
+		});
+	}
 }
 
 $(document).ready(() => {
