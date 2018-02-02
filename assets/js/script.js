@@ -56,6 +56,29 @@ function deletePlaylist(playlistId) {
 	}
 }
 
+function hideOptionsMenu() {
+	let menu = $('.optionsMenu');
+
+	if (menu.css('display') !== 'none') {
+		menu.css('display', 'none');
+	}
+}
+
+function showOptionsMenu(button) {
+	let songId = $(button)
+		.prevAll('.songId')
+		.val();
+	let menu = $('.optionsMenu');
+	let menuWidth = menu.width();
+	let scrollTop = $(window).scrollTop();
+	let elementOffset = $(button).offset().top;
+	let top = elementOffset - scrollTop;
+	let left = $(button).position().left;
+
+	menu.find('.songId').val(songId);
+	menu.css({ top: top + 'px', left: left - menuWidth + 'px', display: 'inline' });
+}
+
 $(document).ready(() => {
 	audioElement = new Audio();
 	audioElement.audio.volume = 1;
@@ -107,6 +130,34 @@ $(document).ready(() => {
 
 	$(document).mouseup(() => {
 		mouseDown = false;
+	});
+
+	$(window).scroll(function() {
+		hideOptionsMenu();
+	});
+
+	$(document).click(function(click) {
+		let target = $(click.target);
+
+		if (!target.hasClass('item') && !target.hasClass('optionsButton')) {
+			hideOptionsMenu();
+		}
+	});
+
+	$(document).on('change', 'select.playlist', function() {
+		let select = $(this);
+		let playlistId = select.val();
+		let songId = select.prev('.songId').val();
+
+		$.post('includes/handlers/ajax/addToPlaylist.php', { playlistId, songId }).done(function(error) {
+			if (error) {
+				alert(error);
+				return;
+			}
+
+			hideOptionsMenu();
+			select.val('');
+		});
 	});
 });
 

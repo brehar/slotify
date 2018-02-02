@@ -72,7 +72,8 @@
 				echo "</span>";
 				echo "</div>";
 				echo "<div class='trackOptions'>";
-				echo "<img class='optionsButton' src='assets/images/icons/more.png' />";
+				echo "<input type='hidden' class='songId' value='" . $albumSong->getId() . "' />";
+				echo "<img class='optionsButton' src='assets/images/icons/more.png' onclick='showOptionsMenu(this);' />";
 				echo "</div>";
 				echo "<div class='trackDuration'>";
 				echo "<span class='duration'>";
@@ -133,3 +134,7 @@
 		}
 	?>
 </div>
+<nav class="optionsMenu">
+    <input type="hidden" class="songId" />
+	<?php echo Playlist::getPlaylistDropdown($con, $userLoggedIn->getUsername()); ?>
+</nav>

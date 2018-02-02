@@ -51,7 +51,8 @@
 				echo "</span>";
 				echo "</div>";
 				echo "<div class='trackOptions'>";
-				echo "<img class='optionsButton' src='assets/images/icons/more.png' />";
+				echo "<input type='hidden' class='songId' value='" . $playlistSong->getId() . "' />";
+				echo "<img class='optionsButton' src='assets/images/icons/more.png' onclick='showOptionsMenu(this);' />";
 				echo "</div>";
 				echo "<div class='trackDuration'>";
 				echo "<span class='duration'>";
@@ -69,3 +70,7 @@
     tempSongIds = '<?php echo json_encode($songIdArray); ?>';
     tempPlaylist = JSON.parse(tempSongIds);
 </script>
+<nav class="optionsMenu">
+    <input type="hidden" class="songId" />
+	<?php echo Playlist::getPlaylistDropdown($con, $userLoggedIn->getUsername()); ?>
+</nav>
