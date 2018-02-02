@@ -41,6 +41,21 @@ function createPlaylist() {
 	}
 }
 
+function deletePlaylist(playlistId) {
+	let prompt = confirm('Are you sure you want to delete this playlist?');
+
+	if (prompt) {
+		$.post('includes/handlers/ajax/deletePlaylist.php', { playlistId }).done(function(error) {
+			if (error) {
+				alert(error);
+				return;
+			}
+
+			openPage('yourMusic.php');
+		});
+	}
+}
+
 $(document).ready(() => {
 	audioElement = new Audio();
 	audioElement.audio.volume = 1;
